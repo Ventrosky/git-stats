@@ -45,6 +45,8 @@ Fetch the User's 100 latest updates on GitHub.
 {{HOST}}/events?name=Ventrosky
 ```
 
+#### Example Response
+
 ```
 {
     "name": "Latest projects activity",
