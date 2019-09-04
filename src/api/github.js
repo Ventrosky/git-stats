@@ -3,7 +3,7 @@
 import octokit from './octo';
 
 const USERNAME = "Ventrosky";
-
+/*
 exports.getRepoLangs = async (languages_url)=>{
   return axios.get(languages_url)
    .then(response => {
@@ -13,9 +13,9 @@ exports.getRepoLangs = async (languages_url)=>{
    .catch(error => {
      console.log(error);
    });
-}
+}*/
 
-exports.octoUserRepos= ()=>{
+exports.octoUserRepos = (name)=>{
   return octokit.repos.listForUser({
     "per_page": 100,
     "username": name || USERNAME
@@ -35,7 +35,7 @@ exports.octoUserRepos= ()=>{
   .catch(ex=> console.log(ex));
 }
 
-exports.octoUserEvents= (name)=>{
+exports.octoUserEvents = (name)=>{
   return octokit.activity.listEventsForUser({
     "per_page": 100,
     "username": name || USERNAME
