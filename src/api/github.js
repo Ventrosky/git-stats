@@ -10,7 +10,6 @@ exports.octoUserRepos = (name)=>{
             "owner": name || USERNAME,
             repo
         }).then(resp => {
-          console.log(obj);
           return Object.assign(obj, {"languages": resp.data});
        })
        .catch(error => {
@@ -23,7 +22,6 @@ exports.octoUserRepos = (name)=>{
         "username": user
     })
     .then(async resp=>{
-        console.log(resp.data);
         return Promise.all(resp.data.map(async r=>{
             return Promise.resolve(await getRepoLangs({
                 "id": r.id,
@@ -39,26 +37,29 @@ exports.octoUserRepos = (name)=>{
     .catch(ex=> console.log(ex));
 }
 
+const objProxy = (init)=> {
+    return new Proxy({}, {
+        get (target, key) {
+          if(key == "toJSON") 
+            return JSON.stringify(target);
+          return target.hasOwnProperty(key) && target[key] || (target[key] = init());
+        }
+      });
+}
+
 exports.octoUserEvents = (name)=>{
   return octokit.activity.listEventsForUser({
     "per_page": 100,
     "username": name || USERNAME
   }).then(evts=>{
-      console.log(evts.data);
       let results = evts.data.reduce((prx,evt) => {
       prx[evt.repo.id].name = evt.repo.name;
       prx[evt.repo.id].url = evt.repo.url;
-      prx[evt.repo.id].evts.push(evt.type);
+      prx[evt.repo.id].evts[evt.type] = prx[evt.repo.id].evts[evt.type] + 1;
       return prx;
-    }, new Proxy({}, {
-      get (target, key) {
-        if(key == "toJSON") 
-          return JSON.stringify(target);
-        return target.hasOwnProperty(key) && target[key] || (target[key] = {"name":"", "evts": [], "url":""});
-      }
-    }));
+    }, objProxy(()=> {return {"name":"", "evts": objProxy(n=>0), "url":""}}));
     let children = Object.values(results).map(e=>{
-      return Object.assign(e, {"totals": e.evts.length})
+      return Object.assign(e, {"totals": Object.values(e.evts).reduce((a,b)=>{return a+b})})
     });
     return {
       "name" : `Latest projects activity`,
