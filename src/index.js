@@ -26,4 +26,9 @@ app.get('/repos', async function(req, res){
     res.json(data);
 });
 
+app.get('/treemap', async function(req, res){
+    let data = await gh.octoUserTreemap(req.query.name);
+    res.json(JSON.stringify(data));
+});
+
 app.listen(port, () => console.log(`App listening on port ${port}`));
