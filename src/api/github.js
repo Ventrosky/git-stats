@@ -102,8 +102,34 @@ exports.octoUserTreemap = (name)=>{
     });
     return {
       "name" : `Latest projects activity`,
-      children
+      children,
+      "colname":"level1"
     };
   })
-  .catch(ex=> console.log(ex));;
+  .catch(ex=> console.log(ex));
 }
+
+exports.octoUsrSmplTreemap = (name)=>{
+    return octokit.activity.listEventsForUser({
+        "per_page": 100,
+        "username": name || USERNAME
+      }).then(evts=>{
+          let results = evts.data.reduce((prx,evt) => {
+          prx[evt.repo.id].name = evt.repo.name;
+          prx[evt.repo.id].url = evt.repo.url;
+          prx[evt.repo.id].evts[evt.type] = prx[evt.repo.id].evts[evt.type] + 1;
+          prx[evt.repo.id]["colname"]="level2";
+          return prx;
+        }, objProxy(()=> {return {"name":"", "evts": objProxy(n=>0), "url":""}}));
+        let middle = Object.values(results).map(e=>{
+          return Object.assign(e, {"value": Object.values(e.evts).reduce((a,b)=>{return a+b})})
+        });
+        
+        return {
+          "name" : `Latest projects activity`,
+          "children":middle,
+          "colname":"level1"
+        };
+      })
+      .catch(ex=> console.log(ex));
+  }

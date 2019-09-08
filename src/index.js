@@ -31,4 +31,9 @@ app.get('/treemap', async function(req, res){
     res.json(JSON.stringify(data));
 });
 
+app.get('/streemap', async function(req, res){
+    let data = await gh.octoUsrSmplTreemap(req.query.name);
+    res.json(JSON.stringify(data));
+});
+
 app.listen(port, () => console.log(`App listening on port ${port}`));
