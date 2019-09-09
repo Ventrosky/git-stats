@@ -1,5 +1,3 @@
-
-
 import octokit from './octo';
 
 const USERNAME = "Ventrosky";

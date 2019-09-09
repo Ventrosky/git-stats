@@ -1,13 +1,13 @@
 {
-  "name": "server",
+  "name": "git-stats",
   "version": "1.0.0",
-  "description": "",
+  "description": "Microservice API for gathering GitHub informations on a given User. Developed as part of a personal Data Visualization project.",
   "main": "src/index.js",
   "scripts": {
     "start": "nodemon --inspect ./src/index.js --exec babel-node",
     "test": "jest"
   },
-  "author": "",
+  "author": "Salvatore Ventrone",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
@@ -28,5 +28,8 @@
     "express": "^4.17.1",
     "mongodb": "^3.2.7",
     "mongoose": "^5.6.8"
+  },
+  "repository": {
+    "url": "https://github.com/Ventrosky/git-stats"
   }
 }

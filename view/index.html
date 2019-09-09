@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>git-stats</title>
+    <meta name="description" content="Microservice API for gathering GitHub informations on a given User. Developed as part of a personal Data Visualization project.">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <h1 class="code-line" data-line-start="0" data-line-end="1"><a id="gitstats_0"></a>git-stats</h1>
+    <p class="has-line-data" data-line-start="2" data-line-end="3">Microservice API for gathering GitHub informations on a given User. </br>
+        Developed for a Data Visualization section on my <a href="https://salvatoreventr.one" target="_blank">presonal page</a>.</p>
+    <h2 class="code-line" data-line-start="4" data-line-end="5"><a id="Endpoints_4"></a>Endpoints</h2>
+    <h3 class="code-line" data-line-start="6" data-line-end="7"><a id="GET_User_Repos_6"></a>GET User Repos</h3>
+    <p class="has-line-data" data-line-start="8" data-line-end="9">Lists the public repositories of a given User, including their language lists.</p>
+    <pre><code class="has-line-data" data-line-start="11" data-line-end="13">{{HOST}}/repos?name=Ventrosky
+</code></pre>
+    <h4 class="code-line" data-line-start="14" data-line-end="15"><a id="Example_Response_14"></a>Example Response</h4>
+    <pre><code class="has-line-data" data-line-start="17" data-line-end="38">[
+    {
+        &quot;id&quot;: 168613721,
+        &quot;full_name&quot;: &quot;Ventrosky/Bears-Team-21&quot;,
+        &quot;description&quot;: &quot;Multiplayer Board Game - Saboteur  | Voyage-7 | https://chingu.io/&quot;,
+        &quot;name&quot;: &quot;Bears-Team-21&quot;,
+        &quot;languages_url&quot;: &quot;https://api.github.com/repos/Ventrosky/Bears-Team-21/languages&quot;,
+        &quot;html_url&quot;: &quot;https://github.com/Ventrosky/Bears-Team-21&quot;,
+        &quot;fork&quot;: true,
+        &quot;languages&quot;: {
+            &quot;Python&quot;: 60776,
+            &quot;JavaScript&quot;: 36120,
+            &quot;HTML&quot;: 21439,
+            &quot;CSS&quot;: 16219,
+            &quot;PowerShell&quot;: 363,
+            &quot;Dockerfile&quot;: 116,
+            &quot;Shell&quot;: 42
+        }
+    }
+]
+</code></pre>
+    <h3 class="code-line" data-line-start="39" data-line-end="40"><a id="GET_User_Events_39"></a>GET User Events</h3>
+    <p class="has-line-data" data-line-start="41" data-line-end="42">Fetch the User’s 100 latest updates on GitHub.</p>
+    <pre><code class="has-line-data" data-line-start="44" data-line-end="46">{{HOST}}/events?name=Ventrosky
+</code></pre>
+    <h4 class="code-line" data-line-start="47" data-line-end="48"><a id="Example_Response_47"></a>Example Response</h4>
+    <pre><code class="has-line-data" data-line-start="50" data-line-end="73">{
+    &quot;name&quot;: &quot;Latest projects activity&quot;,
+    &quot;children&quot;: [
+        {
+            &quot;name&quot;: &quot;reagent-project/reagent-cookbook&quot;,
+            &quot;evts&quot;: {
+                &quot;WatchEvent&quot;: 1
+            },
+            &quot;url&quot;: &quot;https://api.github.com/repos/reagent-project/reagent-cookbook&quot;,
+            &quot;totals&quot;: 1
+        },
+         {
+            &quot;name&quot;: &quot;chingu-voyage7/Bears-Team-21&quot;,
+            &quot;evts&quot;: {
+                &quot;PushEvent&quot;: 1,
+                &quot;PullRequestEvent&quot;: 2
+            },
+            &quot;url&quot;: &quot;https://api.github.com/repos/chingu-voyage7/Bears-Team-21&quot;,
+            &quot;totals&quot;: 3
+        }
+    ]
+}
+</code></pre>
+    <h3 class="code-line" data-line-start="75" data-line-end="76"><a id="GET_Treemap_Activity_75"></a>GET Treemap Activity</h3>
+    <p class="has-line-data" data-line-start="77" data-line-end="78">User’s 100 latest updates on GitHub sent back as a string JSON for data visualization.</p>
+    <pre><code class="has-line-data" data-line-start="80" data-line-end="86">'=&gt; single level treemap 
+{{HOST}}/streemap?name=Ventrosky
+
+'=&gt; multilevel treemap
+{{HOST}}/treemap?name=Ventrosky
+</code></pre>
+    <h4 class="code-line" data-line-start="87" data-line-end="88"><a id="Example_Response_87"></a>Example Response</h4>
+    <pre><code class="has-line-data" data-line-start="90" data-line-end="92">&quot;{\&quot;name\&quot;:\&quot;Latest projects activity\&quot;,\&quot;children\&quot;:[{\&quot;name\&quot;:\&quot;Ventrosky/free-code-camp\&quot;,\&quot;evts\&quot;:{\&quot;PushEvent\&quot;:5},\&quot;url\&quot;:\&quot;https://github.com/Ventrosky/free-code-camp\&quot;,\&quot;colname\&quot;:\&quot;level2\&quot;,\&quot;value\&quot;:5},{\&quot;name\&quot;:\&quot;Ventrosky/git-stats\&quot;,\&quot;evts\&quot;:{\&quot;PushEvent\&quot;:9,\&quot;CreateEvent\&quot;:2},\&quot;url\&quot;:\&quot;https://github.com/Ventrosky/git-stats\&quot;,\&quot;colname\&quot;:\&quot;level2\&quot;,\&quot;value\&quot;:11}],\&quot;colname\&quot;:\&quot;level1\&quot;}&quot;
+</code></pre>
+
+</body>
+
+</html>

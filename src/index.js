@@ -19,6 +19,8 @@ app.use(qname);
 
 const port = process.env.PORT || 8055;
 
+app.use(express.static('public'));
+
 app.get('/events', async function(req, res){
     let data = await gh.octoUserEvents(req.qname);
     res.send(data);
@@ -37,6 +39,10 @@ app.get('/treemap', async function(req, res){
 app.get('/streemap', async function(req, res){
     let data = await gh.octoUsrSmplTreemap(req.qname);
     res.json(JSON.stringify(data));
+});
+
+app.get('/', function(req, res) {
+    res.sendFile('views/index.html', {root: __dirname })
 });
 
 app.listen(port, () => console.log(`App listening on port ${port}`));
