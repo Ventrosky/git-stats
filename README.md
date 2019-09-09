@@ -71,3 +71,22 @@ Fetch the User's 100 latest updates on GitHub.
     ]
 }
 ```
+
+
+### GET Treemap Activity
+
+User's 100 latest updates on GitHub sent back as a string JSON for data visualization.
+
+```
+'=> single level treemap 
+{{HOST}}/streemap?name=Ventrosky
+
+'=> multilevel treemap
+{{HOST}}/treemap?name=Ventrosky
+```
+
+#### Example Response
+
+```
+"{\"name\":\"Latest projects activity\",\"children\":[{\"name\":\"Ventrosky/free-code-camp\",\"evts\":{\"PushEvent\":5},\"url\":\"https://github.com/Ventrosky/free-code-camp\",\"colname\":\"level2\",\"value\":5},{\"name\":\"Ventrosky/git-stats\",\"evts\":{\"PushEvent\":9,\"CreateEvent\":2},\"url\":\"https://github.com/Ventrosky/git-stats\",\"colname\":\"level2\",\"value\":11}],\"colname\":\"level1\"}"
+```
