@@ -4,7 +4,8 @@
   "description": "Microservice API for gathering GitHub informations on a given User. Developed as part of a personal Data Visualization project.",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon --inspect ./src/index.js --exec babel-node",
+    "start": "node ./src/index.js",
+    "dev": "nodemon --inspect ./src/index.js --exec babel-node",
     "test": "jest"
   },
   "author": "Salvatore Ventrone",
@@ -17,7 +18,6 @@
     "@babel/preset-env": "^7.5.5",
     "babel-jest": "^24.8.0",
     "jest": "^24.8.0",
-    "nodemon": "^1.19.1",
     "regenerator-runtime": "^0.13.3"
   },
   "dependencies": {
@@ -27,7 +27,8 @@
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "mongodb": "^3.2.7",
-    "mongoose": "^5.6.8"
+    "mongoose": "^5.6.8",
+    "nodemon": "^1.19.1"
   },
   "repository": {
     "url": "https://github.com/Ventrosky/git-stats"
