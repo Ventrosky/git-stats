@@ -1,7 +1,7 @@
 # git-stats
 
 Microservice API for gathering GitHub informations on a given User. 
-Developed for a Data Visualization section on my [presonal page](https://salvatoreventr.one).
+Developed for a Data Visualization section on my [presonal page](https://salvatoreventr.one) (coming soon WIP).
 Live on [Glitch](https://observant-mouth.glitch.me).
 
 ## Endpoints

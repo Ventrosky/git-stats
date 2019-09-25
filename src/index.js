@@ -7,6 +7,7 @@ import cors from 'cors';
 
 import gh from './api/github';
 import qname from './middleware/qname';
+import logger from './middleware/logger';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
+app.use(logger);
 app.use(qname);
 
 const port = process.env.PORT || 8055;
