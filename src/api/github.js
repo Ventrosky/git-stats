@@ -1,4 +1,9 @@
-import octokit from './octo';
+const Octokit = require('@octokit/rest');
+require('dotenv').config();
+
+const octokit =  new Octokit({
+    auth: process.env.API_TOKEN
+})
 
 const USERNAME = "Ventrosky";
 

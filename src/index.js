@@ -1,13 +1,13 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require( 'cors');
 
-import gh from './api/github';
-import qname from './middleware/qname';
-import logger from './middleware/logger';
+const gh = require( './api/github');
+const qname = require( './middleware/qname').qname;
+const logger = require( './middleware/logger').logger;
 
 const app = express();
 
