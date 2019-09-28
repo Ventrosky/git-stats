@@ -24,23 +24,43 @@ const port = process.env.PORT || 8055;
 app.use(express.static('public'));
 
 app.get('/events', async function(req, res){
-    let data = await gh.octoUserEvents(req.qname);
-    res.send(data);
+    try {
+        let data = await gh.octoUserEvents(req.qname);
+        res.send(data);
+    } catch (ex) {
+        console.log(ex);
+        res.send(503);
+    }
 });
 
 app.get('/repos', async function(req, res){
-    let data = await gh.octoUserRepos(req.qname);
-    res.json(data);
+    try{
+        let data = await gh.octoUserRepos(req.qname);
+        res.json(data);
+    } catch (ex) {
+        console.log(ex);
+        res.send(503);
+    }
 });
 
 app.get('/treemap', async function(req, res){
-    let data = await gh.octoUserTreemap(req.qname);
-    res.json(JSON.stringify(data));
+    try {
+        let data = await gh.octoUserTreemap(req.qname);
+        res.json(JSON.stringify(data));
+    } catch (ex) {
+        console.log(ex);
+        res.send(503);
+    }
 });
 
 app.get('/streemap', async function(req, res){
-    let data = await gh.octoUsrSmplTreemap(req.qname);
-    res.json(JSON.stringify(data));
+    try {
+        let data = await gh.octoUsrSmplTreemap(req.qname);
+        res.json(JSON.stringify(data));
+    } catch (ex) {
+        console.log(ex);
+        res.send(503);
+    }
 });
 
 app.get('/', function(req, res) {
