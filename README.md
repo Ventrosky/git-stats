@@ -2,7 +2,7 @@
 
 Microservice API for gathering GitHub informations on a given User. 
 Developed for a Data Visualization section on my [presonal page](https://salvatoreventr.one).
-Live on [Glitch](https://observant-mouth.glitch.me).
+Live on [Heroku](https://sleepy-chamber-33613.herokuapp.com/).
 
 ## Endpoints
 
